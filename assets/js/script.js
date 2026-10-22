@@ -53,7 +53,7 @@ function estrai() {
     rendiCronologia();
     
     if (usciti.length === 90) {
-    cronologia.textContent = 'Sono stati estratti tutti i numeri!';
+    ultimoNumero.textContent = 'Sono stati estratti tutti i numeri!';
 }
 }
 
