@@ -50,12 +50,13 @@ function estrai() {
     usciti.push(numeroCasuale);
     ultimoNumero.textContent = numeroCasuale;
     rendiTabellone();
+    rendiCronologia();
     
     if (usciti.length === 90) {
     console.log('Sono stati estratti tutti i numeri!');
 }
 }
-estrai();
+
 
 btnEstrai.addEventListener('click', estrai);
 
@@ -64,3 +65,11 @@ function rendiCronologia() {
     cronologia.textContent = ultimiDieci.join(',');
 }
 rendiCronologia();
+
+function reset() {
+    usciti = [];
+    rendiTabellone();
+    ultimoNumero.textContent = '-';
+    cronologia.textContent = 'Nessun numero estratto!'
+}
+btnReset.addEventListener('click', reset);
