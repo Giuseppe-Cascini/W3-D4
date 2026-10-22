@@ -15,3 +15,14 @@ let usciti = []; // array dei numeri già estratti
    4. Listener click su #estrai e #reset
    EXTRA: conteggio, animazione di estrazione, localStorage
 */
+function rendiTabellone() {
+    const tabellone = document.querySelector('#tabellone');
+    for (let i = 1; i <= 90; i++) {
+        const numero = document.createElement('div');
+        numero.textContent = i;
+        tabellone.appendChild(numero);
+        numero.classList.add('numero');
+    }
+}
+
+rendiTabellone();
