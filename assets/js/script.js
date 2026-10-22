@@ -4,6 +4,11 @@
   - DOM con querySelector / querySelectorAll.
   - Eventi con addEventListener (mai onclick inline nell'HTML).
 */
+const tabellone = document.querySelector('#tabellone');
+const ultimoNumero = document.querySelector('#ultimo-numero');
+const btnEstrai = document.querySelector('#estrai');
+const btnReset = document.querySelector('#reset');
+const cronologia = document.querySelector('#cronologia');
 
 let usciti = []; // array dei numeri già estratti
 
@@ -16,13 +21,46 @@ let usciti = []; // array dei numeri già estratti
    EXTRA: conteggio, animazione di estrazione, localStorage
 */
 function rendiTabellone() {
-    const tabellone = document.querySelector('#tabellone');
+    tabellone.textContent = '';
     for (let i = 1; i <= 90; i++) {
         const numero = document.createElement('div');
         numero.textContent = i;
         tabellone.appendChild(numero);
         numero.classList.add('numero');
+
+    if (usciti.includes(i)) {
+    numero.classList.add('uscito');
+    }
+
+
     }
 }
 
 rendiTabellone();
+
+function estrai() {
+    if (usciti.length === 90) {
+    console.log('Sono stati estratti tutti i numeri!');
+    return;
+}
+    let numeroCasuale = Math.floor(Math.random() * 90) +1;
+    while(usciti.includes(numeroCasuale)) {
+        numeroCasuale = Math.floor(Math.random() * 90) +1;
+    }
+    usciti.push(numeroCasuale);
+    ultimoNumero.textContent = numeroCasuale;
+    rendiTabellone();
+    
+    if (usciti.length === 90) {
+    console.log('Sono stati estratti tutti i numeri!');
+}
+}
+estrai();
+
+btnEstrai.addEventListener('click', estrai);
+
+function rendiCronologia() {
+    const ultimiDieci = usciti.slice(-10);
+    cronologia.textContent = ultimiDieci.join(',');
+}
+rendiCronologia();
